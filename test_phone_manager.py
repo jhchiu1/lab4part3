@@ -71,7 +71,8 @@ class TestPhoneManager(unittest.TestCase):
         testAssignmentMgr = PhoneAssignments()
         testAssignmentMgr.assign(1, testEmployee1)
 
-        self.assertRaises(PhoneError, testAssignmentMgr.assign(1, testEmployee2))
+        with self.assertRaises(PhoneError): 
+            testAssignmentMgr.assign(2, testEmployee1)
 
     def test_assign_phone_to_employee_who_already_has_a_phone(self):
         testEmployee = Employee(1, "Julie")
@@ -81,7 +82,8 @@ class TestPhoneManager(unittest.TestCase):
         testAssignmentMgr = PhoneAssignments()
         testAssignmentMgr.assign(1, testEmployee)
 
-        self.assertRaises(PhoneError, testAssignmentMgr.assign(2, testEmployee))
+        with self.assertRaises(PhoneError): 
+            testAssignmentMgr.assign(2, testEmployee)
 
     def test_assign_phone_to_the_employee_who_already_has_this_phone(self):
         # The method should not make any changes but NOT raise a PhoneError if a phone is assigned to the same user it is currently assigned to.
